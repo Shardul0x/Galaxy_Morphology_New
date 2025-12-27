@@ -1,0 +1,29 @@
+# config/pipeline_config.yaml
+# Single config file for all domains
+
+domains:
+  galaxy_morphology:
+    features: [P_EL, P_CW, P_ACW, P_EDGE, P_DK, P_MG, P_CS, P_EL_DEBIASED, P_CS_DEBIASED]
+    vae_dims: [64, 32, 16]
+    latent_dim: 8
+    pinn_dims: [64, 64, 32]
+    
+  stellar_evolution:
+    features: [mass, luminosity, temperature, radius, metallicity, age]
+    vae_dims: [32, 16, 8]
+    latent_dim: 6
+    pinn_dims: [32, 32, 16]
+    
+  exoplanet_detection:
+    features: [orbital_period, transit_depth, transit_duration, planet_radius, semi_major_axis, eccentricity]
+    vae_dims: [32, 16]
+    latent_dim: 6
+    pinn_dims: [32, 16]
+
+defaults:
+  normalization: minmax
+  batch_size: 128
+  vae_epochs: 20
+  pinn_epochs: 20
+  physics_weight: 0.01
+  augmentation_factor: 3
